@@ -5,7 +5,7 @@ Our Official Repository For Our Testicular Cancer Awareness Program 24/7Online[c
 > *"Your balls? Our problem. Fix Balls! Fix Life!"*[cite: 2]  
 > — **Balls Helpline Department**[cite: 2]
 
-Welcome to the official 24/7 web intake portal for critical Testicular Cancer Awareness Program[cite: 2].
+Welcome to the official 24/7 web intake portal for critical Testicular Cancer Awareness Program.
 
 ---
 
