@@ -11,7 +11,7 @@ Welcome to the official 24/7 web intake portal for critical health awareness. Bu
 
 ### 🌐 Live Deployment
 Check out the active helpline portal live on the web:  
-👉 **[Visit the Awareness Portal](https://storied-sherbet-8f0b22.netlify.app)**
+👉 **[Visit the Awareness Portal](https://testicularcancer.netlify.app/)**
 
 ---
 
