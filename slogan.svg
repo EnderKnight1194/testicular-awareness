@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#2a0845" />
+      <stop offset="100%" stop-color="#0f051d" />
+    </radialGradient>
+
+    <!-- Metallic Gold Gradient -->
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffe066" />
+      <stop offset="50%" stop-color="#f59f00" />
+      <stop offset="100%" stop-color="#d9480f" />
+    </linearGradient>
+
+    <!-- Medical Cross Gradient -->
+    <linearGradient id="crossGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ff6b6b" />
+      <stop offset="100%" stop-color="#c92a2a" />
+    </linearGradient>
+
+    <!-- Sphere 3D Shading -->
+    <radialGradient id="sphereGrad1" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#ffd43b" />
+      <stop offset="40%" stop-color="#f08c00" />
+      <stop offset="100%" stop-color="#7f1d1d" />
+    </radialGradient>
+    <radialGradient id="sphereGrad2" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#ffe066" />
+      <stop offset="45%" stop-color="#e67700" />
+      <stop offset="100%" stop-color="#5c1d0c" />
+    </radialGradient>
+
+    <!-- Circular Text Paths -->
+    <!-- Top Arc (Clockwise for regular top text) -->
+    <path id="textArcTop" d="M 65 250 A 185 185 0 0 1 435 250" fill="none" />
+    <!-- Bottom Arc (Clockwise, positioned to keep text right-side-up along the bottom curve) -->
+    <path id="textArcBottom" d="M 425 250 A 175 175 0 0 1 75 250" fill="none" />
+  </defs>
+
+  <!-- Outer Ring / Border -->
+  <circle cx="250" cy="250" r="240" fill="url(#bgGrad)" stroke="url(#goldGrad)" stroke-width="10" />
+  <circle cx="250" cy="250" r="225" fill="none" stroke="#fcc419" stroke-width="2" stroke-dasharray="6,4" />
+  <circle cx="250" cy="250" r="145" fill="#18042a" stroke="url(#goldGrad)" stroke-width="6" />
+
+  <!-- Top Curved Text: BALLS HELPLINE DEPARTMENT -->
+  <text fill="url(#goldGrad)" font-family="Impact, Arial Black, sans-serif" font-size="29" font-weight="bold" letter-spacing="3.5">
+    <textPath href="#textArcTop" startOffset="50%" text-anchor="middle">
+      BALLS HELPLINE DEPARTMENT
+    </textPath>
+  </text>
+
+  <!-- Bottom Curved Text: HELPING PEOPLES SINCE 1969 -->
+  <text fill="#ffd43b" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="900" letter-spacing="4">
+    <textPath href="#textArcBottom" startOffset="50%" text-anchor="middle">
+      ★ HELPING PEOPLES SINCE 1969 ★
+    </textPath>
+  </text>
+
+  <!-- Inner Crest Icons & Graphics -->
+  <g id="center-emblem">
+    <!-- Medical Cross Shield Background -->
+    <path d="M 230 160 H 270 V 185 H 295 V 225 H 270 V 250 H 230 V 225 H 205 V 185 H 230 Z" 
+          fill="url(#crossGrad)" stroke="#fff" stroke-width="2.5" opacity="0.9" />
+
+    <!-- Two Golden Spheres (The Department Assets) -->
+    <circle cx="222" cy="235" r="34" fill="url(#sphereGrad1)" stroke="#ffe066" stroke-width="2.5" />
+    <circle cx="278" cy="235" r="34" fill="url(#sphereGrad2)" stroke="#ffe066" stroke-width="2.5" />
+
+    <!-- NASA-Approved Orbit Ring Around Them -->
+    <ellipse cx="250" cy="235" rx="72" ry="22" 
+             fill="none" stroke="#4dabf7" stroke-width="3.5" 
+             transform="rotate(-22 250 235)" stroke-dasharray="140 15 30 15" />
+    
+    <!-- Little Satellite / Rocket Spark on the Orbit -->
+    <polygon points="316,204 322,212 312,212" fill="#fff" />
+  </g>
+
+  <!-- Golden Department Ribbon / Banner Across Center -->
+  <g id="ribbon">
+    <path d="M 125 285 L 145 270 L 355 270 L 375 285 L 355 300 L 145 300 Z" 
+          fill="url(#goldGrad)" stroke="#fff" stroke-width="1.5" />
+    <text x="250" y="292" text-anchor="middle" 
+          font-family="Impact, Arial Black, sans-serif" font-size="15" 
+          fill="#3e0707" letter-spacing="2">
+      OFFICIAL HELPLINE CREST
+    </text>
+  </g>
+
+  <!-- Star Embellishments -->
+  <polygon points="98,245 102,253 111,254 104,260 106,269 98,264 90,269 92,260 85,254 94,253" fill="#fcc419" />
+  <polygon points="402,245 406,253 415,254 408,260 410,269 402,264 394,269 396,260 389,254 398,253" fill="#fcc419" />
+</svg>
