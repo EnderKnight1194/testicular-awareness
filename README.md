@@ -22,15 +22,15 @@ Check out the active helpline portal live on the web:
 ---
 
 ### 🏆 Department Achievements
-- 🚀 **NASA-Approved** balls-fixing machinery[cite: 2]
-- 🌐 **690,000,000+** cases addressed worldwide[cite: 2]
-- ⚡ **Lightning-fast** intake procedures[cite: 2]
-- ⭐ **Customer Satisfaction Score:** `-99 / 100`[cite: 2]
+- 🚀 **NASA-Approved** Balls-Fixing Machinery
+- 🌐 **690,000,000+** Cases Addressed **Worldwide**
+- ⚡ **Lightning-fast** Intake Procedures
+- ⭐ **Customer Satisfaction Score:** `-99 / 100`
 
 ---
 
 ### 📋 Form Specifications
-- **Eligible Professions:** Teachers, Engineers, Doctors, Students, and the Unemployed[cite: 2]. *(Note: Politicians are strictly instructed to GET OUT)*[cite: 2].
+- **Eligible Professions:** Teachers, Engineers, Doctors, Students, and the Unemployed. *(Note: Politicians are strictly instructed to GET OUT)*[cite: 2].
 - **Emergency Hotlines:** 
   * 📞 Phone: `6969696969`[cite: 2]
   * 📧 Email: `fixyourdamnballstodayatonly$690000@gmail.com`[cite: 2]
