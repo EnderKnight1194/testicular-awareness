@@ -8,7 +8,7 @@
   <h4>If You Suspect Yourself To Have Testicular Cancer, Then Apply For This Medical Form:</h4>
   <h4>We Are 24/7 Online:</h4>
 
-  <!-- Main layout table: Form on left, Picture on right -->
+  <!-- Main layout table: Form on left, Scanner box on right -->
   <table width="100%" border="0">
     <tr>
       <!-- Left Column: Form -->
@@ -54,9 +54,19 @@
         </form>
       </td>
 
-      <!-- Right Column: Picture Area -->
-      <td width="45%" align="center" valign="middle">
-        <img src="slogan.svg" width="380" border="0" alt="Awareness Poster">
+      <!-- Right Column: Scanner Area -->
+      <td width="45%" align="center" valign="top">
+        <video id="webcam" width="420" height="300" autoplay playsinline style="border: 2px solid black; background-color: black;"></video><br>
+        
+        <h3 id="scannerTitle">Our New Advanced Balls Scanner  It Can Detect Testicular Cancer It Can Even Detect The Cancer From Air </h3>
+        
+        <label for="cameraSelect">Select Camera:</label><br>
+        <select id="cameraSelect" onchange="startCamera(this.value)">
+          <option>Loading cameras...</option>
+        </select><br><br>
+        
+        <input type="button" id="analyseBtn" value="Analyse" onclick="runAnalysis()">
+        <input type="button" id="tryAgainBtn" value="Try Again" onclick="resetScanner()"><br><br>
       </td>
     </tr>
   </table>
@@ -74,5 +84,86 @@
     <li>Universal Service Coverage: Zero Geographic Restrictions</li>
     <li>Interplanetary Ready: Covers any location across Earth or adjacent to launchpads</li>
   </ol>
+
+  <script>
+    let currentStream = null;
+    let blinkTimer = null;
+    let analysisTimeout = null;
+    const defaultTitle = "Our New Advanced Balls Scanner  It Can Detect Testicular Cancer It Can Even Detect The Cancer From Air ";
+
+    async function getCameras() {
+      const select = document.getElementById('cameraSelect');
+      try {
+        const initialStream = await navigator.mediaDevices.getUserMedia({ video: true });
+        initialStream.getTracks().forEach(track => track.stop());
+
+        const devices = await navigator.mediaDevices.enumerateDevices();
+        const videoDevices = devices.filter(device => device.kind === 'videoinput');
+
+        select.innerHTML = '';
+        videoDevices.forEach((device, index) => {
+          const option = document.createElement('option');
+          option.value = device.deviceId;
+          option.text = device.label || 'Camera ' + (index + 1);
+          select.appendChild(option);
+        });
+
+        if (videoDevices.length > 0) {
+          startCamera(videoDevices[0].deviceId);
+        }
+      } catch (err) {
+        select.innerHTML = '<option>Camera access blocked or unavailable</option>';
+      }
+    }
+
+    async function startCamera(deviceId) {
+      if (currentStream) {
+        currentStream.getTracks().forEach(track => track.stop());
+      }
+      try {
+        const constraints = {
+          video: deviceId ? { deviceId: { exact: deviceId } } : true
+        };
+        currentStream = await navigator.mediaDevices.getUserMedia(constraints);
+        document.getElementById('webcam').srcObject = currentStream;
+      } catch (err) {
+        console.error('Camera switch error: ', err);
+      }
+    }
+
+    function runAnalysis() {
+      // Clear any active timers
+      clearInterval(blinkTimer);
+      clearTimeout(analysisTimeout);
+
+      const titleElem = document.getElementById('scannerTitle');
+      titleElem.style.visibility = 'visible';
+
+      // 1. Show green bold text and start blinking immediately
+      titleElem.innerHTML = '<font color="green"><b><blink>Analysing Please Wait...</blink></b></font>';
+
+      let visible = true;
+      blinkTimer = setInterval(() => {
+        titleElem.style.visibility = visible ? 'hidden' : 'visible';
+        visible = !visible;
+      }, 400);
+
+      // 2. After 5 seconds, switch text to red detected and keep blinking
+      analysisTimeout = setTimeout(() => {
+        titleElem.innerHTML = '<font color="red"><b><blink>TESTICULAR CANCER DETECTED</blink></b></font>';
+      }, 5000);
+    }
+
+    function resetScanner() {
+      clearInterval(blinkTimer);
+      clearTimeout(analysisTimeout);
+
+      const titleElem = document.getElementById('scannerTitle');
+      titleElem.style.visibility = 'visible';
+      titleElem.innerHTML = defaultTitle;
+    }
+
+    window.onload = getCameras;
+  </script>
 </body>
 </html>
