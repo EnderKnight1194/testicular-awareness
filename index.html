@@ -56,7 +56,15 @@
 
       <!-- Right Column: Picture Area -->
       <td width="45%" align="center" valign="middle">
-        <img src="slogan.svg" width="380" border="0" alt="Awareness Poster">
+        <div style="width:380px; height:285px; border:2px solid black; background:black;">
+          <video id="cameraView" autoplay playsinline muted style="width:100%; height:100%; object-fit:cover;"></video>
+        </div>
+        <br>
+        <b>Select Camera:</b>
+        <select id="cameraSelect">
+          <option value="">Loading cameras...</option>
+        </select>
+        <p id="cameraStatus"></p>
       </td>
     </tr>
   </table>
@@ -74,5 +82,77 @@
     <li>Universal Service Coverage: Zero Geographic Restrictions</li>
     <li>Interplanetary Ready: Covers any location across Earth or adjacent to launchpads</li>
   </ol>
+
+  <script>
+    (function () {
+      var video = document.getElementById('cameraView');
+      var select = document.getElementById('cameraSelect');
+      var status = document.getElementById('cameraStatus');
+      var currentStream = null;
+
+      function stopStream() {
+        if (currentStream) {
+          currentStream.getTracks().forEach(function (t) { t.stop(); });
+          currentStream = null;
+        }
+      }
+
+      async function startCamera(deviceId) {
+        stopStream();
+        var constraints = { audio: false, video: deviceId ? { deviceId: { exact: deviceId } } : true };
+        currentStream = await navigator.mediaDevices.getUserMedia(constraints);
+        video.srcObject = currentStream;
+        status.textContent = '';
+      }
+
+      async function listCameras(selectedId) {
+        var devices = await navigator.mediaDevices.enumerateDevices();
+        var cams = devices.filter(function (d) { return d.kind === 'videoinput'; });
+        select.innerHTML = '';
+        if (cams.length === 0) {
+          select.innerHTML = '<option value="">No camera found</option>';
+          return;
+        }
+        cams.forEach(function (cam, i) {
+          var opt = document.createElement('option');
+          opt.value = cam.deviceId;
+          opt.textContent = cam.label || ('Camera ' + (i + 1));
+          if (cam.deviceId === selectedId) opt.selected = true;
+          select.appendChild(opt);
+        });
+      }
+
+      async function init() {
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+          select.innerHTML = '<option value="">Camera not supported</option>';
+          status.textContent = 'Your browser does not support camera access.';
+          return;
+        }
+        try {
+          await startCamera();
+          var track = currentStream.getVideoTracks()[0];
+          var activeId = track && track.getSettings ? track.getSettings().deviceId : '';
+          await listCameras(activeId);
+        } catch (err) {
+          select.innerHTML = '<option value="">Camera unavailable</option>';
+          status.textContent = 'Could not access the camera. Please allow camera permission.';
+        }
+      }
+
+      select.addEventListener('change', function () {
+        if (!select.value) return;
+        startCamera(select.value).catch(function () {
+          status.textContent = 'Could not switch to that camera.';
+        });
+      });
+
+      navigator.mediaDevices && navigator.mediaDevices.addEventListener &&
+        navigator.mediaDevices.addEventListener('devicechange', function () {
+          listCameras(select.value);
+        });
+
+      init();
+    })();
+  </script>
 </body>
 </html>
